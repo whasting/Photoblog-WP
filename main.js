@@ -27,13 +27,11 @@ $('a').click(function() {
   }
 
   let href = $.attr(this, 'href');
-  if ($(href).offset()) {
-    $root.animate({
-        scrollTop: $(href).offset().top - 80
-    }, 400);
-  }
-
-  return false;
+  // if ($(href).offset()) {
+  //   $root.animate({
+  //       scrollTop: $(href).offset().top - 80
+  //   }, 400);
+  // }
 });
 
 let menuOpen = false;
@@ -83,6 +81,17 @@ $('.donate-button').click(() => {
 
 $(document).ready(function() {
   $('p').has('.hero-img').addClass('hero');
+
+  for (let i = 0; $(`.img-description-${i}`).siblings().position(); i++) {
+    console.log($(`.img-description-${i}`).siblings().height());
+
+    let element = $(`.img-description-${i}`);
+
+    element.css({
+      'top': element.siblings().position().top + element.siblings().height() / 2,
+      'left': element.siblings().position().left + element.siblings().width() / 2
+    });
+  }
 });
 
 const scrollLock = $.scrollLock = ( function scrollLockClosure() {
