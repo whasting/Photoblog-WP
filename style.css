@@ -32,6 +32,10 @@ button {
   cursor: pointer;
 }
 
+.slb_container {
+  padding: 0;
+}
+
 .donate-button {
   width: 140px;
   min-width: 140px;
@@ -236,8 +240,10 @@ ul {
 
 .gallery, .display-posts-listing {
   width: 90%;
+  margin: auto;
   max-width: 1400px;
-  line-height: 35px;
+  line-height: 0px;
+  overflow: visible;
 
   -webkit-column-count: 3;
   -webkit-column-gap:   15px;
@@ -247,18 +253,48 @@ ul {
   column-gap:           15px;
 }
 
+
+.gallery-item {
+  margin: 0;
+}
+
+.attachment-full {
+  margin-bottom: 15px;
+}
+
 .listing-item {
   width: 100%;
   height: auto;
 }
 
-.gallery > p > img, .post-image > img {
-  width: 100%;
-  height: auto;
+#slb_viewer_wrap, .slb_theme_slb_baseline, .slb_container {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
-.gallery > p > img:hover, .post-image > img:hover {
-  filter: brightness(75%);
+.slb_content {
+  margin: auto !important;
+}
+
+.slb_details {
+  height: 0 !important;
+}
+
+.slb_template_tag_ui_slideshow_control {
+  display: none !important;
+}
+
+.gallery > p > img, .post-image > img, .attachment-full  {
+  width: 100%;
+  height: auto;
+  filter: brightness(100%);
+  -webkit-transition: filter 250ms ease-in-out, filter 250ms ease-in-out;
+  -moz-transition: filter 250ms ease-in-out, filter 250ms ease-in-out;
+  -o-transition: filter 250ms ease-in-out, filter 250ms ease-in-out;
+  transition: filter 250ms ease-in-out, filter 250ms ease-in-out;
+}
+
+.gallery > p > img:hover, .attachment-full:hover {
+  filter: brightness(65%);
   cursor: pointer;
 }
 
@@ -273,8 +309,35 @@ ul {
   color: black;
 }
 
-.post-image > p {
+.post-image > div {
+  visibility: hidden;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.6);
+  opacity: 0;
+  -webkit-transition: visibility 250ms ease-in-out, opacity 250ms ease-in-out;
+  -moz-transition: visibility 250ms ease-in-out, opacity 250ms ease-in-out;
+  -o-transition: visibility 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition: visibility 250ms ease-in-out, opacity 250ms ease-in-out;
+}
+
+.img-description-text {
+  font-weight: bold;
+  color: white;
+  font-size: 24px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+.attachment-post-thumbnail:hover + div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.post-image > div:hover {
+  visibility: visible;
+  opacity: 1;
 }
 
 .comment-respond {

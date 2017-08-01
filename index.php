@@ -15,7 +15,6 @@
 
   // End the loop.
   endwhile;
-  echo "<script>console.log('JELLO');</script>";
 ?>
 
 <?php get_footer(); ?>
