@@ -44,8 +44,10 @@ $('body').click( e => {
     menuOpen = false;
   }
 
-  if ($(e.target).attr('class') === 'slb_viewer_layout') {
+  if ($(e.target).attr('class') === 'slb_viewer_overlay' ||
+      $(e.target).attr('class') === 'slb_viewer_layout') {
     scrollLock( false );
+    $('html, body').animate({scrollTop: currentTop}, 50);
   }
 });
 
@@ -62,17 +64,30 @@ $(window).load(() => {
   positionHoverText();
 });
 
-const xSpace = "slb_template_tag slb_template_tag_ui slb_template_tag_ui_close";
-const xDot = ".slb_template_tag.slb_template_tag_ui.slb_template_tag_ui_close";
+const closeButton = "slb_template_tag slb_template_tag_ui slb_template_tag_ui_close";
+const closeButtonDot = closeButton.split(' ').join('.');
+const imgContainer = "slb_viewer_slb_default";
+let currentTop;
 
 $('body').on('DOMNodeInserted', e => {
-  if ($(e.target).attr('class') === xSpace) {
-    $(xDot).click(() => scrollLock( false ));
+  if ($(e.target).attr('class') === closeButton) {
+    $(`.${closeButtonDot}`).click(() => {
+      scrollLock( false );
+      $('html, body').animate({scrollTop: currentTop}, 50);
+    });
   }
-});
 
-$('.gallery-item').click(() => {
-  scrollLock( true );
+  if ($(e.target).attr('id') === imgContainer) {
+    $(`#${imgContainer}`).css('top', $(window).scrollTop());
+    currentTop = $(window).scrollTop();
+    scrollLock( true );
+
+    $('.gallery-item').click(() => {
+      $(`#${imgContainer}`).css('top', $(window).scrollTop());
+      currentTop = $(window).scrollTop();
+      scrollLock( true );
+    });
+  }
 });
 
 const positionHoverText = () => {

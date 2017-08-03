@@ -33,7 +33,7 @@ button {
 }
 
 .slb_container {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .donate-button {
